@@ -517,9 +517,9 @@ $(".gen").change(function () {
         default:
             pokedex = POKEDEX_XY;
             setdex = SETDEX_XY;
-            if (field.getSide(0).inverse === "Inverse" || field.getSide(1).inverse === "Inverse") {
+            if (Field.getSide(0).inverse === "Inverse" || Field.getSide(1).inverse === "Inverse") {
                 typeChart = TYPE_CHART_INVERSE;
-            }else {
+            } else {
                 typeChart = TYPE_CHART_XY;
             } 
             moves = MOVES_XY;
