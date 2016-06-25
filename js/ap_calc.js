@@ -407,6 +407,7 @@ function getMoveDetails(moveInfo) {
 }
 
 function Field() {
+    var inverse = $("input:radio[name='inverse']:checked").val();
     var format = $("input:radio[name='format']:checked").val();
     var isGravity = $("#gravity").prop("checked");
     var isSR = [$("#srL").prop("checked"), $("#srR").prop("checked")];
@@ -433,11 +434,12 @@ function Field() {
         weather = "";
     };
     this.getSide = function(i) {
-        return new Side(format, terrain, weather, isGravity, isSR[i], spikes[i], isReflect[i], isLightScreen[i], isForesight[i], isHelpingHand[i], isFriendGuard[i]);
+        return new Side(inverse, format, terrain, weather, isGravity, isSR[i], spikes[i], isReflect[i], isLightScreen[i], isForesight[i], isHelpingHand[i], isFriendGuard[i]);
     };
 }
 
-function Side(format, terrain, weather, isGravity, isSR, spikes, isReflect, isLightScreen, isForesight, isHelpingHand, isFriendGuard) {
+function Side(inverse, format, terrain, weather, isGravity, isSR, spikes, isReflect, isLightScreen, isForesight, isHelpingHand, isFriendGuard) {
+    this.inverse = inverse;
     this.format = format;
     this.terrain = terrain;
     this.weather = weather;
@@ -515,7 +517,11 @@ $(".gen").change(function () {
         default:
             pokedex = POKEDEX_XY;
             setdex = SETDEX_XY;
-            typeChart = TYPE_CHART_XY;
+            if (field.getSide(0).inverse === "Inverse" || field.getSide(1).inverse === "Inverse") {
+                typeChart = TYPE_CHART_INVERSE;
+            }else {
+                typeChart = TYPE_CHART_XY;
+            } 
             moves = MOVES_XY;
             items = ITEMS_XY;
             abilities = ABILITIES_XY;
@@ -545,6 +551,7 @@ $(".notation").change(function () {
 });
 
 function clearField() {
+    $("#normal-inverse").prop("checked", true);
     $("#singles-format").prop("checked", true);
     $("#clear").prop("checked", true);
     $("#gscClear").prop("checked", true);
