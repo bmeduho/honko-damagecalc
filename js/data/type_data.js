@@ -815,4 +815,4 @@ var TYPE_CHART_INVERSE = {
         Dark: 0.5,
         Fairy: 1
     }
-});
+};
