@@ -21,7 +21,7 @@ function CALCULATE_ALL_MOVES_BW(p1, p2, field) {
     p2.stats[SA] = getModifiedStat(p2.rawStats[SA], p2.boosts[SA]);
     var side1 = field.getSide(1);
     var side2 = field.getSide(0);
-    if (side1.inverse === "Inverse" || side2.inverse = "Inverse") {
+    if (side1.inverse === "Inverse" || side2.inverse === "Inverse") {
         typeChart = TYPE_CHART_INVERSE
     }
     checkInfiltrator(p1, side1);
